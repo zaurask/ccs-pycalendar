@@ -126,6 +126,9 @@ class ContainerBase(ComponentBase):
         compend = None
         componentstack = []
 
+        if not isinstance(ins, StringIO):
+            ins = StringIO(ins.decode('utf-8'))
+
         while readFoldedLine(ins, lines):
 
             line = lines[0]

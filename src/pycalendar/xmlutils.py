@@ -31,14 +31,14 @@ def toString(root):
     def _indentNode(node, level=0):
         if node.text is not None and node.text.strip():
             return
-        elif node.getchildren():
+        elif list(node):
             indent = "\n" + " " * (level + 1) * INDENT
             node.text = indent
-            for child in node.getchildren():
+            for child in list(node):
                 child.tail = indent
                 _indentNode(child, level + 1)
-            if len(node.getchildren()):
-                node.getchildren()[-1].tail = "\n" + " " * level * INDENT
+            if len(list(node)):
+                list(node)[-1].tail = "\n" + " " * level * INDENT
 
     _indentNode(root, 0)
     data += XML.tostring(root).decode() + "\n"
